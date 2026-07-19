@@ -10,7 +10,7 @@ Página web de iniciativa ciudadana y repositorio de evidencia pública contra l
 La Autoridad de Transporte Urbano (ATU) y los concesionarios del Metropolitano han eliminado progresivamente la tarifa plana local de las rutas alimentadoras, imponiendo una "tarifa integrada" obligatoria de **S/ 3.50**. Esta medida ha sido vendida comunicacionalmente como un beneficio, pero oculta fallas operativas y técnicas que perjudican económicamente al usuario:
 
 1. **La Trampa de los 122 Minutos:** El sistema promete que el usuario pagará solo S/ 3.50 por todo el viaje (Alimentador + Troncal + Alimentador), siempre y cuando el tiempo entre la primera y la última validación no supere los 122 minutos.
-2. **Inviabilidad Logística:** En rutas largas (ej. Lima Sur hacia Lima Norte), considerando los recortes de rutas troncales (como la Ruta B), la falta de flota, y las interminables colas en hora punta, es matemáticamente y logísticamente improbable cumplir con esta ventana de tiempo.
+2. **Inviabilidad Logística:** En rutas largas (ej. Lima Sur hacia Lima Norte), considerando los recortes de rutas troncales (como la Ruta B), el desgaste y disminución natural de flota, y las interminables colas en hora punta, es matemáticamente y logísticamente improbable cumplir con esta ventana de tiempo.
 3. **El Cobro Doble:** Al vencerse el plazo de 122 minutos por causas imputables a la ineficiencia del propio servicio, el sistema penaliza al usuario cobrándole automáticamente un pasaje nuevo de S/ 3.50 al subir al último alimentador.
 
 ## 📄 La Evidencia (Transparencia Pública)
@@ -28,8 +28,8 @@ Todos los documentos originales en formato PDF se encuentran respaldados públic
 
 ## 💻 Estructura del Repositorio
 * `index.html`: Landing page estática, responsiva y con soporte nativo para light/dark mode.
-* `evidencia/`: Directorio que contiene las resoluciones, actas y cartas de la ATU en formato PDF.
-* `assets/`: Imágenes, capturas de pantalla de quejas públicas y recursos gráficos de apoyo.
+* `/evidencia/`: Directorio que contiene las resoluciones, actas y cartas de la ATU en formato PDF.
+* `/recursos/`: Imágenes, capturas de pantalla de quejas públicas y recursos gráficos de apoyo.
 
 ## 🤝 Cómo Apoyar
 Si eres un usuario afectado por los cobros dobles o las deficiencias del servicio, contacta con los administradores de esta página para adherir tu firma al planillón oficial que será entregado a la Defensoría del Pueblo.
