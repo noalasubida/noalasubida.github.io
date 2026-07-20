@@ -19,17 +19,14 @@ A través de solicitudes amparadas en la Ley de Transparencia y Acceso a la Info
 * **Inexistencia de Sustento Técnico:** La entidad reguladora admite por escrito que **no cuenta** con un Informe Técnico Legal ni un Estudio de Demanda y Costos que justifique la viabilidad de los 122 minutos ni la imposición de los S/ 3.50.
 * **Rescate Financiero:** Las actas del Consorcio Coordinador demuestran que la medida fue aprobada para contrarrestar los bajos indicadores económicos de las empresas concesionarias privadas, forzando al usuario a asumir el déficit.
 
-Todos los documentos originales en formato PDF se encuentran respaldados públicamente en el directorio `/evidencia` de este repositorio.
+Todos los documentos originales en formato PDF se encuentran respaldados públicamente en el directorio principal de este repositorio.
 
 ## 🎯 Objetivo de este Proyecto
 1. **Informar** a la ciudadanía sobre sus derechos y la realidad técnica detrás de la publicidad de la ATU.
 2. **Centralizar** las pruebas oficiales obtenidas por Ley de Transparencia.
 3. **Recolectar** firmas de usuarios afectados para presentar una Acción de Queja Colectiva formal ante la Defensoría del Pueblo y una denuncia por Falta de Idoneidad ante Indecopi.
 
-## 💻 Estructura del Repositorio
-* `index.html`: Landing page estática, responsiva y con soporte nativo para light/dark mode.
-* `/evidencia/`: Directorio que contiene las resoluciones, actas y cartas de la ATU en formato PDF.
-* `/recursos/`: Imágenes, capturas de pantalla de quejas públicas y recursos gráficos de apoyo.
-
 ## 🤝 Cómo Apoyar
 Si eres un usuario afectado por los cobros dobles o las deficiencias del servicio, contacta con los administradores de esta página para adherir tu firma al planillón oficial que será entregado a la Defensoría del Pueblo.
+Email: [noalasubida@protonmail.com](noalasubida@protonmail.com)
+Messenger: [https://www.messenger.com/t/61580752985072](messenger)
