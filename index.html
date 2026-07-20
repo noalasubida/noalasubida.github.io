@@ -1,193 +1,977 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>No a la Subida Arbitraria - ATU</title>
-    <meta name="description" content="Evidencia y acción ciudadana contra el cobro arbitrario de S/ 3.50 en el Metropolitano.">
-    
-    <style>
-        /* Variables de color para soportar Light/Dark Mode automáticamente */
-        :root {
-            --bg-color: #f9f9fa;
-            --text-color: #333333;
-            --card-bg: #ffffff;
-            --primary-color: #d32f2f;
-            --primary-hover: #b71c1c;
-            --border-color: #e0e0e0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No a la Subida — La verdad sobre los S/ 3.50 del Metropolitano</title>
+<meta name="description" content="La ATU impuso una tarifa integrada obligatoria de S/ 3.50 en los alimentadores del Metropolitano sin ningún estudio técnico que lo sustente. Firma la Adhesión Ciudadana para exigir que vuelva el pasaje justo.">
+<meta property="og:title" content="No a la Subida — La verdad sobre los S/ 3.50">
+<meta property="og:description" content="La ATU admitió por escrito que no existe estudio técnico que sustente el cobro de S/ 3.50 en los alimentadores. Súmate.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
+<style>
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --text-color: #e0e0e0;
-                --card-bg: #1e1e1e;
-                --primary-color: #ef5350;
-                --primary-hover: #e53935;
-                --border-color: #333333;
-            }
-        }
+/* ============================================================
+   TOKENS — paleta / tipografía / espaciado
+   ============================================================ */
+:root{
+  color-scheme: light;
 
-        /* Resets básicos y tipografía */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  --bg:        #F7F6F1;
+  --surface:   #FFFFFF;
+  --surface-2: #EFEDE5;
+  --ink:       #17181C;
+  --ink-soft:  #52555C;
+  --rule:      #DCD8CC;
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 0 20px;
-        }
+  --red:       #C41E3A;
+  --red-ink:   #7A1327;
+  --red-soft:  #F7DEE2;
 
-        /* Layout contenedor */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
+  --navy:      #1E3A5F;
+  --navy-ink:  #12253D;
+  --navy-soft: #E2E9F1;
 
-        /* Hero Section */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+  --amber:     #C9860A;
+  --amber-ink: #7A5306;
+  --amber-soft:#F7E7C4;
 
-        header h1 {
-            color: var(--primary-color);
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
+  --green:     #1B7A5A;
+  --green-ink: #114D39;
+  --green-soft:#DCEEE5;
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+  --font-display: "Big Shoulders Display", sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+  --font-digital: "VT323", monospace;
 
-        /* Tarjetas de Información */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
+  --container: 1080px;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(20,20,15,.06), 0 8px 24px -12px rgba(20,20,15,.18);
+}
 
-        .card h2 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
+@media (prefers-color-scheme: dark){
+  :root{
+    color-scheme: dark;
+    --bg:        #131418;
+    --surface:   #1B1D22;
+    --surface-2: #1F2126;
+    --ink:       #ECEAE2;
+    --ink-soft:  #A6A9B0;
+    --rule:      #33353C;
 
-        .card ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
+    --red:       #FF6B7F;
+    --red-ink:   #FFB2BD;
+    --red-soft:  #34161C;
 
-        .highlight {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
+    --navy:      #8FB3E0;
+    --navy-ink:  #C7DBF4;
+    --navy-soft: #182535;
 
-        /* Botones y Enlaces */
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            text-align: center;
-            width: 100%;
-            max-width: 300px;
-            margin: 10px auto;
-            display: block;
-        }
+    --amber:     #F0B429;
+    --amber-ink: #FBDB8F;
+    --amber-soft:#2E2409;
 
-        .btn:hover {
-            background-color: var(--primary-hover);
-        }
+    --green:     #46C08F;
+    --green-ink: #A6E9CD;
+    --green-soft:#0F2A22;
 
-        .document-link {
-            display: inline-block;
-            margin-top: 10px;
-            color: var(--text-color);
-            text-decoration: underline;
-        }
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.6);
+  }
+}
 
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
+*{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
 
-        /* Adaptabilidad Móvil */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+img,svg{ max-width:100%; display:block; }
+a{ color:inherit; }
+
+.wrap{
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:24px;
+}
+
+h1,h2,h3{
+  font-family:var(--font-display);
+  font-weight:800;
+  letter-spacing:.2px;
+  line-height:1.02;
+  margin:0;
+  text-wrap: balance;
+}
+
+h2{ font-size:clamp(28px,4.4vw,44px); }
+h3{ font-size:clamp(19px,2.4vw,23px); font-weight:700; }
+
+p{ margin:0; }
+.lede{ font-size:clamp(17px,1.9vw,19px); color:var(--ink-soft); max-width:62ch; }
+
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.eyebrow::before{
+  content:"";
+  width:7px; height:7px; border-radius:50%;
+  background:currentColor;
+}
+
+.skip-link{
+  position:absolute; left:-999px; top:auto;
+  background:var(--ink); color:var(--bg);
+  padding:12px 18px; border-radius:0 0 8px 0; z-index:200;
+  font-family:var(--font-mono); font-size:14px;
+}
+.skip-link:focus{ left:0; top:0; }
+
+:focus-visible{
+  outline:3px solid var(--amber);
+  outline-offset:2px;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.site-header{
+  position:sticky; top:0; z-index:100;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.site-header .wrap{
+  display:flex; align-items:center; justify-content:space-between;
+  min-height:64px; gap:16px;
+}
+.wordmark{
+  font-family:var(--font-display);
+  font-weight:800; font-size:19px;
+  text-decoration:none;
+  display:flex; align-items:center; gap:9px;
+  letter-spacing:.2px;
+  white-space:nowrap;
+}
+.wordmark .tag{
+  background:var(--red); color:#fff;
+  font-family:var(--font-mono); font-weight:600; font-size:11px;
+  padding:3px 7px; border-radius:5px; letter-spacing:.03em;
+}
+.site-nav{
+  display:flex; gap:22px; overflow-x:auto;
+  scrollbar-width:none;
+}
+.site-nav::-webkit-scrollbar{ display:none; }
+.site-nav a{
+  text-decoration:none; font-size:14.5px; font-weight:600;
+  color:var(--ink-soft); white-space:nowrap; padding:6px 2px;
+  border-bottom:2px solid transparent;
+}
+.site-nav a:hover{ color:var(--ink); border-color:var(--rule); }
+.nav-cta{
+  flex-shrink:0;
+  background:var(--red); color:#fff !important;
+  padding:9px 16px; border-radius:8px;
+  font-weight:700; font-size:14px; text-decoration:none;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--font-body); font-weight:700; font-size:15.5px;
+  padding:13px 22px; border-radius:9px; text-decoration:none;
+  border:1.5px solid transparent; cursor:pointer;
+  transition:transform .12s ease;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn-primary{ background:var(--red); color:#fff; }
+.btn-ghost{ background:transparent; border-color:var(--rule); color:var(--ink); }
+.btn-dark{ background:var(--ink); color:var(--bg); }
+.btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+/* ============================================================
+   HERO + VALIDADOR (elemento firma)
+   ============================================================ */
+.hero{ padding:64px 0 40px; }
+.hero-grid{
+  display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;
+}
+@media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
+
+.hero-copy .eyebrow{ color:var(--red); margin-bottom:14px; }
+.hero h1{ font-size:clamp(38px,6vw,64px); margin-bottom:18px; }
+.hero h1 em{ font-style:normal; color:var(--red); }
+.hero .lede{ margin-bottom:28px; }
+
+.fact-strip{
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;
+}
+.fact-chip{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+  background:var(--surface-2); border:1px solid var(--rule);
+  padding:7px 11px; border-radius:99px;
+}
+
+/* Validador — reloj digital que simula la trampa de los 122 minutos */
+.validator{
+  background:var(--ink); color:var(--bg);
+  border-radius:16px; padding:22px 22px 18px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--rule);
+}
+.validator-top{
+  display:flex; justify-content:space-between; align-items:center;
+  font-family:var(--font-mono); font-size:11.5px; letter-spacing:.08em;
+  color:var(--ink-soft); text-transform:uppercase;
+}
+.validator-screen{
+  margin:16px 0 10px;
+  background:#0B0F0C;
+  border-radius:10px;
+  padding:22px 18px;
+  text-align:center;
+  border:2px solid #262b26;
+}
+.validator-label{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.1em;
+  text-transform:uppercase; color:#6fae7f; margin-bottom:4px;
+}
+.validator-clock{
+  font-family:var(--font-digital);
+  font-size:clamp(48px,7vw,64px);
+  line-height:1;
+  color:#7CF29A;
+  text-shadow:0 0 14px rgba(124,242,154,.35);
+  letter-spacing:2px;
+}
+.validator.is-charging .validator-clock{
+  color:#FF6B6B;
+  text-shadow:0 0 16px rgba(255,107,107,.5);
+}
+.validator.is-charging .validator-screen{ border-color:#3a1414; }
+.validator-state{
+  margin-top:10px; font-family:var(--font-mono); font-size:12.5px; color:var(--ink-soft);
+  min-height:16px;
+}
+.validator-foot{
+  font-size:12.5px; color:var(--ink-soft); margin-top:10px; line-height:1.5;
+}
+
+/* ============================================================
+   SECCIONES — genérico
+   ============================================================ */
+section{ padding:76px 0; border-bottom:1px solid var(--rule); }
+.section-head{ max-width:64ch; margin-bottom:42px; }
+.section-head .eyebrow{ color:var(--ink-soft); margin-bottom:12px; }
+.section-head h2{ margin-bottom:14px; }
+
+/* ---- 5 pasos del engaño ---- */
+.steps{
+  display:grid; grid-template-columns:repeat(5,1fr); gap:14px;
+}
+@media (max-width:900px){ .steps{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .steps{ grid-template-columns:1fr; } }
+.step{
+  background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+  padding:20px 18px; position:relative;
+}
+.step .num{
+  font-family:var(--font-display); font-weight:800; font-size:34px;
+  color:var(--red); display:block; margin-bottom:10px;
+}
+.step p{ font-size:14.5px; color:var(--ink-soft); }
+.step.is-charge{ border-color:var(--red); background:var(--red-soft); }
+.step.is-charge .num{ color:var(--red-ink); }
+.steps-note{
+  margin-top:20px; font-size:15px; color:var(--ink-soft); max-width:62ch;
+}
+
+/* ---- pruebas / documentos oficiales ---- */
+.doc-card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+  overflow:hidden; margin-bottom:20px; box-shadow:var(--shadow);
+}
+.doc-card-tab{
+  background:var(--navy); color:#fff;
+  font-family:var(--font-mono); font-size:12px; font-weight:600; letter-spacing:.04em;
+  padding:9px 18px;
+}
+.doc-card blockquote{
+  margin:0; padding:22px 24px; font-size:17px; line-height:1.6;
+  color:var(--ink); font-style:italic;
+  border-left:3px solid var(--navy);
+}
+.doc-card blockquote p + p{ margin-top:12px; }
+.evidence-links{ display:flex; gap:14px; flex-wrap:wrap; margin-top:22px; }
+.evidence-links a{
+  font-size:14px; font-weight:600; text-decoration:none;
+  display:inline-flex; align-items:center; gap:6px;
+  color:var(--navy); border-bottom:1px solid var(--navy);
+  padding-bottom:1px;
+}
+
+/* ---- a quién perjudica ---- */
+.harm-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+@media (max-width:860px){ .harm-grid{ grid-template-columns:1fr; } }
+.harm-card{
+  border-radius:12px; padding:24px; border:1px solid var(--rule);
+}
+.harm-card h3{ margin-bottom:14px; }
+.harm-card ul{ margin:0; padding-left:18px; font-size:14.5px; color:var(--ink-soft); }
+.harm-card li + li{ margin-top:10px; }
+.harm-card.c-usuarios{ background:var(--red-soft); border-color:transparent; }
+.harm-card.c-usuarios h3{ color:var(--red-ink); }
+.harm-card.c-concesionarias{ background:var(--amber-soft); border-color:transparent; }
+.harm-card.c-concesionarias h3{ color:var(--amber-ink); }
+.harm-card.c-sistema{ background:var(--navy-soft); border-color:transparent; }
+.harm-card.c-sistema h3{ color:var(--navy-ink); }
+
+/* ---- cronología ---- */
+.timeline{ position:relative; padding-left:28px; }
+.timeline::before{
+  content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px;
+  background:var(--rule);
+}
+.tl-item{ position:relative; padding-bottom:32px; }
+.tl-item:last-child{ padding-bottom:0; }
+.tl-item::before{
+  content:""; position:absolute; left:-28px; top:4px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--navy); border:3px solid var(--bg);
+  box-shadow:0 0 0 1.5px var(--navy);
+}
+.tl-date{
+  font-family:var(--font-mono); font-size:12.5px; font-weight:700;
+  color:var(--navy); letter-spacing:.03em; margin-bottom:6px; display:block;
+}
+.tl-item h3{ font-size:17.5px; margin-bottom:6px; }
+.tl-item p{ font-size:14.5px; color:var(--ink-soft); max-width:66ch; }
+
+/* ---- comunicación / stats ---- */
+.stats-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:32px; }
+@media (max-width:760px){ .stats-grid{ grid-template-columns:1fr; } }
+.stat{ border-top:3px solid var(--red); padding-top:14px; }
+.stat .big{
+  font-family:var(--font-display); font-weight:800;
+  font-size:clamp(34px,4.6vw,50px); color:var(--red); line-height:1;
+}
+.stat p{ font-size:14px; color:var(--ink-soft); margin-top:8px; }
+.reaction-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.reaction-chips span{
+  font-family:var(--font-mono); font-size:12px; color:var(--ink-soft);
+  border:1px dashed var(--rule); border-radius:6px; padding:4px 8px;
+}
+.reaction-chips-note{ font-size:13.5px; color:var(--ink-soft); margin-top:10px; }
+
+/* ---- propuesta / tabla de tarifas ---- */
+.fare-table{ width:100%; border-collapse:collapse; background:var(--surface); border-radius:12px; overflow:hidden; box-shadow:var(--shadow); }
+.fare-table th, .fare-table td{ padding:16px 18px; text-align:left; font-size:14.5px; border-bottom:1px solid var(--rule); }
+.fare-table thead th{
+  font-family:var(--font-mono); font-size:11.5px; text-transform:uppercase; letter-spacing:.06em;
+  color:var(--ink-soft); background:var(--surface-2);
+}
+.fare-table tbody tr:last-child td{ border-bottom:none; }
+.fare-table td.price-old{ color:var(--green-ink); font-weight:700; font-family:var(--font-mono); }
+.fare-table td.price-now{ color:var(--red-ink); font-weight:700; font-family:var(--font-mono); }
+.fare-table td.price-ask{ color:var(--navy-ink); font-weight:700; font-family:var(--font-mono); }
+.fare-note{ margin-top:16px; font-size:14px; color:var(--ink-soft); max-width:62ch; }
+
+/* ---- FAQ ---- */
+.faq-item{ border-bottom:1px solid var(--rule); }
+.faq-item summary{
+  cursor:pointer; padding:20px 4px; font-weight:700; font-size:16.5px;
+  list-style:none; display:flex; justify-content:space-between; gap:16px; align-items:center;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+  content:"+"; font-family:var(--font-display); font-size:24px; color:var(--ink-soft); flex-shrink:0;
+}
+.faq-item[open] summary::after{ content:"–"; }
+.faq-item p{ padding:0 4px 22px; color:var(--ink-soft); font-size:15px; max-width:66ch; }
+
+/* ---- opiniones / testimonios ---- */
+.opinions-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+}
+@media (max-width:860px){ .opinions-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px){ .opinions-grid{ grid-template-columns:1fr; } }
+.opinion-card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:12px;
+  padding:18px; display:flex; flex-direction:column; gap:10px;
+}
+.opinion-name{ font-weight:700; font-size:14.5px; }
+.opinion-text{ font-size:14px; color:var(--ink-soft); line-height:1.5; }
+
+/* ---- defiéndete ---- */
+.defend-box{
+  background:var(--amber-soft); border-radius:14px; padding:32px;
+  border-top:4px solid var(--amber);
+}
+.defend-list{ display:grid; gap:18px; margin-top:20px; }
+.defend-list h3{ font-size:16.5px; margin-bottom:6px; color:var(--amber-ink); }
+.defend-list p{ font-size:14.5px; color:var(--ink-soft); max-width:70ch; }
+
+/* ---- firma final ---- */
+.cta-final{
+  background:var(--ink); color:var(--bg); border-radius:20px;
+  padding:56px 40px; text-align:center;
+}
+@media (max-width:560px){ .cta-final{ padding:40px 22px; } }
+.cta-final h2{ margin-bottom:14px; }
+.cta-final .lede{ color:#C7C7C0; margin:0 auto 30px; }
+.cta-final .btn-row{ justify-content:center; }
+.cta-final .btn-primary{ background:var(--red); }
+.share-row{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.share-row a{
+  font-family:var(--font-mono); font-size:13px; text-decoration:none;
+  border:1px solid #3a3c42; border-radius:99px; padding:8px 16px; color:#D8D8D2;
+}
+.share-row a:hover{ border-color:#6a6d75; }
+
+/* ---- footer ---- */
+footer{ padding:44px 0 60px; }
+footer .wrap{ display:flex; flex-direction:column; gap:14px; }
+.foot-note{ font-size:13px; color:var(--ink-soft); max-width:70ch; }
+.foot-links{ display:flex; gap:18px; flex-wrap:wrap; }
+.foot-links a{ font-size:13px; color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--rule); }
+.foot-refs{ font-family:var(--font-mono); font-size:12px; color:var(--ink-soft); line-height:1.7; }
+
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>La Verdad sobre los S/ 3.50</h1>
-            <p>La tarifa obligatoria y el cobro doble de la ATU explicados con pruebas oficiales.</p>
-        </header>
+<a href="#contenido" class="skip-link">Saltar al contenido</a>
 
-        <main>
-            <!-- Sección 1: El Problema -->
-            <section class="card">
-                <h2>1. La Trampa de los 122 Minutos</h2>
-                <p>El pasaje en rutas alimentadoras subió a S/ 3.50 bajo la promesa de una "tarifa integrada". Sin embargo, si tu viaje incluye transbordos y demoras más de 122 minutos entre tu primer pasaje y el último bus, <span class="highlight">el sistema te cobrará S/ 3.50 adicionales</span>.</p>
-                <br>
-                <p>En horas punta, con las colas interminables en los terminales Naranjal/Matellini y los recientes recortes de rutas, hacer un viaje cruzando la ciudad en menos de 2 horas es logísticamente improbable. El usuario termina pagando por la ineficiencia del sistema.</p>
-            </section>
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="wordmark">NO A LA SUBIDA <span class="tag">ATU</span></a>
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a href="#el-engano">El engaño</a>
+      <a href="#pruebas">Las pruebas</a>
+      <a href="#perjudica">Quién pierde</a>
+      <a href="#cronologia">Cronología</a>
+      <a href="#propuesta">Nuestro pedido</a>
+      <a href="#preguntas">Preguntas</a>
+      <a href="#defiendete">Defiéndete</a>
+    </nav>
+    <a href="#firma" class="nav-cta">Firmar</a>
+  </div>
+</header>
 
-            <!-- Sección 2: La Evidencia -->
-            <section class="card">
-                <h2>2. La ATU no tiene Sustento Técnico</h2>
-                <p>Tras una solicitud formal por Ley de Transparencia (Exp. 4950-2026-02-0008281), la Dirección de Operaciones de la ATU admitió oficialmente por escrito que:</p>
-                <br>
-                <blockquote>
-                    <em>"...no se cuenta con la información requerida referida a Informe Técnico Legal y/o Estudio de Demanda y Costos que sustenta, justifica y aprueba la eliminación de la tarifa plana local y la imposición progresiva de la tarifa integrada (S/ 3.50)... toda vez que no ha sido generada ni producida..."</em>
-                </blockquote>
-                <br>
-                <p>Esto demuestra que la medida se tomó de forma arbitraria para rescatar financieramente a los concesionarios, sin evaluar el impacto real en el tiempo y bolsillo del ciudadano.</p>
-                
-                <!-- Asegúrate de crear la carpeta /evidencia y poner ahí los PDFs -->
-                <a href="./evidencia/Memorando_ATU.pdf" target="_blank" class="document-link">📄 Ver Memorando Oficial de la ATU (PDF)</a><br>
-                <a href="./evidencia/Carta_Gerencia.pdf" target="_blank" class="document-link">📄 Ver Carta de Gerencia General (PDF)</a>
-            </section>
+<main id="contenido">
 
-            <!-- Sección 3: El Call to Action -->
-            <section class="card" style="text-align: center;">
-                <h2>3. Suma tu Voz a la Queja Formal</h2>
-                <p>Estamos reuniendo firmas de usuarios afectados para presentar un expediente formal ante la <strong>Defensoría del Pueblo</strong> y frenar esta medida arbitraria. No pedimos huellas ni correos, solo tu firma de respaldo.</p>
-                <br>
-                <a href="https://m.me/tu_perfil_alternativo" target="_blank" class="btn">Quiero Firmar el Planillón</a>
-                <p style="font-size: 0.8rem; margin-top: 10px;">Contacta con nuestro perfil para coordinar tu firma de manera segura.</p>
-            </section>
-        </main>
+  <!-- ============ HERO ============ -->
+  <section id="top" class="hero" style="border-bottom:none;">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Vigente desde el 20 de junio del 2026</span>
+        <h1>El pasaje que te cobran <em>dos veces</em>.</h1>
+        <p class="lede">
+          La ATU impuso una tarifa integrada obligatoria de <strong>S/ 3.50</strong> en todos los
+          alimentadores del Metropolitano — incluso si solo tomas el alimentador — sin ningún
+          informe técnico, legal o estudio de demanda que lo sustente. Si tu conexión demora más
+          de 122 minutos, pagas de nuevo.
+        </p>
+        <div class="btn-row">
+          <a href="#firma" class="btn btn-primary">Firmar la Adhesión Ciudadana</a>
+          <a href="#pruebas" class="btn btn-ghost">Ver la prueba oficial</a>
+        </div>
+        <div class="fact-strip">
+          <span class="fact-chip">S/ 3.50 tarifa obligatoria</span>
+          <span class="fact-chip">122 min tiempo límite</span>
+          <span class="fact-chip">0 estudios técnicos que la sustenten</span>
+          <span class="fact-chip">Exp. 4950-2026-02-0008281</span>
+        </div>
+      </div>
 
-        <footer>
-            <p>Iniciativa ciudadana independiente en defensa de los derechos del pasajero.</p>
-            <p><a href="https://github.com/noalasubida/noalasubida.github.io" target="_blank" style="color: inherit;">Ver código fuente y evidencias en GitHub</a></p>
-        </footer>
+      <div class="validator" id="validator-widget" aria-hidden="false">
+        <div class="validator-top">
+          <span>Simulación · Conexión alimentador</span>
+          <span>COSAC I</span>
+        </div>
+        <div class="validator-screen">
+          <div class="validator-label" id="validator-label">Tiempo restante sin costo</div>
+          <div class="validator-clock" id="validator-clock">122:00</div>
+        </div>
+        <p class="validator-state" id="validator-state">Conexión activa — sin costo adicional</p>
+        <p class="validator-foot">
+          Así funciona la trampa de los 122 minutos. Esta simulación corre acelerada — en la vida
+          real tienes exactamente 2 horas con 2 minutos antes de que se te cobre otra vez.
+        </p>
+      </div>
     </div>
+  </section>
+
+  <!-- ============ 5 PASOS DEL ENGAÑO ============ -->
+  <section id="el-engano">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Así te lo venden como “ahorro”</span>
+        <h2>El plan de "ahorro" es una tarifa forzada</h2>
+        <p class="lede">La ATU dice que esto "beneficia" al usuario porque paga un único monto.
+        Esto es lo que en verdad ocurre, paso a paso.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="num">01</span><p>Recargas un monto mayor a S/ 3.50. Si no, no puedes abordar el alimentador.</p></div>
+        <div class="step"><span class="num">02</span><p>Abordas el alimentador y llegas al terminal respectivo.</p></div>
+        <div class="step"><span class="num">03</span><p>Llegas al terminal y pagas S/ 0.00 en el validador — ya pagaste en el bus.</p></div>
+        <div class="step"><span class="num">04</span><p>Te trasladas a tu destino en el servicio troncal.</p></div>
+        <div class="step is-charge"><span class="num">05</span><p>Si necesitas otro alimentador y ya pasaron 122 minutos, te cobran S/ 3.50 otra vez.</p></div>
+      </div>
+      <p class="steps-note">
+        Es el mismo proceso de siempre — pero ahora obligatorio para todo el sistema, con un
+        cronómetro corriendo en tu contra. Trasladarse los 38 km entre Chimpu Ocllo y Matellini en
+        menos de 2 horas, en hora punta, es logísticamente improbable.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PRUEBAS OFICIALES ============ -->
+  <section id="pruebas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">No es una opinión — es lo que la ATU admitió por escrito</span>
+        <h2>La ATU no tiene sustento técnico</h2>
+        <p class="lede">
+          Tras una solicitud formal por Ley de Transparencia (Exp. 4950-2026-02-0008281), la
+          Dirección de Operaciones de la ATU respondió por escrito lo siguiente:
+        </p>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-card-tab">Carta N° D-010385-2026-ATU/GG-UACDG-AIP</div>
+        <blockquote>
+          <p>"...no se cuenta con la información requerida referida a Informe Técnico Legal y/o
+          Estudio de Demanda y Costos que sustenta, justifica y aprueba la eliminación de la
+          tarifa plana local y la imposición progresiva de la tarifa integrada (S/ 3.50)... toda
+          vez que no ha sido generada ni producida..."</p>
+        </blockquote>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-card-tab">Memorando N° D-001782-2026-ATU/DO-SSTR</div>
+        <blockquote>
+          <p>La subdirección de Servicio de Transporte Regular confirma, en los mismos términos,
+          que no existe informe técnico, legal o estadístico que sustente ni justifique la
+          eliminación de la tarifa plana local ni la imposición progresiva de la tarifa
+          obligatoria. Solo remiten actas del Consorcio Coordinador donde se acuerda el aumento —
+          sin estudio previo.</p>
+        </blockquote>
+      </div>
+
+      <p class="lede" style="margin-bottom:0;">
+        Esto demuestra que la medida se tomó de forma arbitraria, para respaldar financieramente a
+        los concesionarios, sin evaluar el impacto real en el tiempo y el bolsillo del ciudadano.
+      </p>
+
+      <div class="evidence-links">
+        <a href="/evidencia/Memorando_ATU.pdf">→ Ver Memorando oficial de la ATU (PDF)</a>
+        <a href="/evidencia/Carta_Gerencia.pdf">→ Ver Carta de Gerencia General (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ A QUIÉN PERJUDICA ============ -->
+  <section id="perjudica">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Nadie sale ganando</span>
+        <h2>¿A quién perjudica esta medida?</h2>
+      </div>
+      <div class="harm-grid">
+        <div class="harm-card c-usuarios">
+          <h3>A los usuarios</h3>
+          <ul>
+            <li>Debes recargar el monto completo antes de abordar; si no, simplemente no subes.</li>
+            <li>Para recargar por Yape o Plin, primero tienes que ir a un terminal.</li>
+            <li>Te obliga a tomar la ruta troncal, o a pagar un tramo corto a pérdida.</li>
+            <li>En rutas sin alternativa formal, empuja al transporte informal, exponiéndote.</li>
+          </ul>
+        </div>
+        <div class="harm-card c-concesionarias">
+          <h3>A las concesionarias</h3>
+          <ul>
+            <li>El IPK en las rutas alimentadoras baja: menos recaudación y ganancia real.</li>
+            <li>Más gasto de combustible para cubrir rutas que antes se usaban fuera de hora punta.</li>
+            <li>Pierden reputación frente a los usuarios y consumidores del servicio.</li>
+          </ul>
+        </div>
+        <div class="harm-card c-sistema">
+          <h3>Al sistema</h3>
+          <ul>
+            <li>Genera desconfianza y empuja a alternativas más contaminantes, abusivas e ilegales.</li>
+            <li>Aplaza soluciones reales que podrían mejorar la eficiencia del servicio.</li>
+            <li>Subutiliza la flota de alimentadores, perjudicando los ratios de eficiencia por unidad.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CRONOLOGÍA ============ -->
+  <section id="cronologia">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Actas del Consorcio Coordinador</span>
+        <h2>Cómo se decidió, sin estudios</h2>
+        <p class="lede">Reconstruido a partir de las actas de sesión y cartas obtenidas por Ley de
+        Transparencia. La tarifa se acordó por unanimidad entre la ATU y las concesionarias —
+        nunca con los usuarios en la mesa.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-date">21 de octubre, 2025</span>
+          <h3>Se acuerda por unanimidad la tarifa única de S/ 3.50</h3>
+          <p>Perú Masivo atribuye la caída del IPK al "transporte ilegal" y a rutas tradicionales,
+          sin mencionar la falta de mantenimiento de las unidades ni la ausencia de alternativas
+          formales en avenidas demandadas como Los Alisos.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">11 de diciembre, 2025</span>
+          <h3>Las propias concesionarias piden acortar los 122 minutos</h3>
+          <p>La reducción del tiempo de conexión no fue una idea de la ATU, sino un pedido de los
+          concesionarios — sin considerar la congestión en hora punta que ya hace difícil cumplir
+          el plazo actual.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">22 de abril, 2026</span>
+          <h3>Se debate reducir las rutas alimentadoras "a un mínimo, por ejemplo tres"</h3>
+          <p>En la misma sesión se aprueba la tarifa integrada única de S/ 3.50 para todo el
+          sistema, a ejecutarse en fases progresivas a partir del 2 de mayo.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">Octubre 2025 – junio 2026</span>
+          <h3>14 publicaciones en redes sociales, cero notificación directa</h3>
+          <p>La ATU difunde 14 piezas gráficas y audiovisuales sobre la tarifa integrada — para una
+          base de más de 500 mil pasajeros diarios solo en el Metropolitano.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-date">20 de junio, 2026</span>
+          <h3>Entra en vigencia también para quienes solo usan el alimentador</h3>
+          <p>Desde esta fecha, todos los usuarios pagan la tarifa integrada desde el inicio del
+          viaje, todos los días, sin ninguna excepción.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMUNICACIÓN / STATS ============ -->
+  <section id="comunicacion">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">"Su campaña de comunicación son posts en redes sociales"</span>
+        <h2>Casi nadie vio el anuncio</h2>
+      </div>
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="big">500,000+</span>
+          <p>Pasajeros que moviliza el Metropolitano al día, según cifras de la propia ATU.</p>
+        </div>
+        <div class="stat">
+          <span class="big">&lt;500</span>
+          <p>Reacciones promedio por publicación oficial anunciando el cambio de tarifa.</p>
+        </div>
+        <div class="stat">
+          <span class="big">0.1%</span>
+          <p>De los usuarios habría visto el anuncio. El 99.9% no.</p>
+        </div>
+      </div>
+      <div class="reaction-chips">
+        <span>86 reacciones</span><span>82 reacciones</span><span>77 reacciones</span>
+        <span>121 reacciones</span><span>316 reacciones</span><span>68 reacciones</span>
+        <span>35 reacciones</span>
+      </div>
+      <p class="reaction-chips-note">
+        Reacciones registradas en las publicaciones oficiales sobre la tarifa integrada. Las
+        medidas suelen anunciarse en redes con apenas un día de anticipación antes de activarse.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ NUESTRA PROPUESTA ============ -->
+  <section id="propuesta">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Lo que pedimos</span>
+        <h2>Que vuelva el pasaje justo</h2>
+        <p class="lede">No pedimos algo nuevo — pedimos que vuelva la tarifa que existía antes de
+        esta imposición unánime entre la ATU y las concesionarias.</p>
+      </div>
+      <table class="fare-table">
+        <thead>
+          <tr>
+            <th>Tramo</th>
+            <th>Antes</th>
+            <th>Ahora</th>
+            <th>Pedimos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tramo corto (solo alimentador)</td>
+            <td class="price-old">S/ 1.00</td>
+            <td class="price-now">S/ 3.50</td>
+            <td class="price-ask">S/ 1.00</td>
+          </tr>
+          <tr>
+            <td>Tramo largo (alimentador + troncal)</td>
+            <td class="price-old">S/ 1.50</td>
+            <td class="price-now">S/ 3.50</td>
+            <td class="price-ask">S/ 1.50</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="fare-note">
+        La conexión Troncal + Alimentador ya costaba S/ 3.50 antes de esta medida. Ahora se impone
+        ese mismo monto a todos, sin distinción para adultos mayores ni estudiantes, y sin
+        considerar el medio pasaje.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ PREGUNTAS FRECUENTES ============ -->
+  <section id="preguntas">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pero, ¿esto no es...?</span>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <details class="faq-item">
+        <summary>¿Esto no afecta solo a quienes hacen tramos cortos?</summary>
+        <p>Esa es la idea — pero por la alta congestión del sistema en hora punta, el tiempo de
+        espera en muchos casos supera fácilmente los 122 minutos, incluso en tramos largos.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿No es beneficioso pagar un solo monto por la conexión?</summary>
+        <p>El costo de la conexión Troncal + Alimentador siempre fue S/ 3.50. Ahora se lo imponen a
+        todos, sin consideración para personas mayores o estudiantes que antes pagaban menos por
+        tramos cortos.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿No es útil para quienes viajan largas distancias?</summary>
+        <p>Solo si te mantienes dentro del rango de 122 minutos. De lo contrario, vuelves a pagar.
+        El sistema no hace distinciones por demoras en el servicio, averías o largos tiempos de
+        espera.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>¿No se comunicó este cambio con anticipación?</summary>
+        <p>La ATU difundió 14 piezas en redes sociales entre octubre de 2025 y junio de 2026, pero
+        cada una llegó a menos de 500 reacciones — frente a más de 500 mil pasajeros diarios.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ OPINIONES ============ -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">No somos los únicos</span>
+        <h2>Todos los que están en contra</h2>
+        <p class="lede">Comentarios reales de usuarios afectados por la medida.</p>
+      </div>
+
+      <!--
+        Para agregar un nuevo comentario, copia el bloque completo de un
+        .opinion-card (desde <div class="opinion-card"> hasta </div>)
+        y pégalo dentro de .opinions-grid con el nombre y el texto nuevos.
+      -->
+      <div class="opinions-grid">
+        <div class="opinion-card">
+          <span class="opinion-name">Rocío Mendoza</span>
+          <p class="opinion-text">"Porque va a estar 3.50 los alimentadores, si no hacen rutas largas."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Erick Estrada Palma</span>
+          <p class="opinion-text">"Pensar que antes estaba 1 sol..."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Lucero Cóndor Gómez</span>
+          <p class="opinion-text">"Entonces si tomo dos alimentadores, ¿me sale 3.5? Porque la guía me dijo que me saldría 7 soles."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Chanan Curi Coca</span>
+          <p class="opinion-text">"Yo lo tomaba para tramo corto dentro de mi distrito. Con la nueva tarifa me sale más barato viajar en taxi con mi hermana."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Lenz Barrentos</span>
+          <p class="opinion-text">"Hay muchos que suben al alimentador para unas cuantas cuadras y no necesariamente van hasta las estaciones centrales."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Inti Pizarro</span>
+          <p class="opinion-text">"Que los informales se vuelvan formales, dice."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Javier Sanches</span>
+          <p class="opinion-text">"Ahora las combis se van a ir otra vez, más llenas que nunca."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Marimar Ojeda</span>
+          <p class="opinion-text">"Un día me cobraron doble."</p>
+        </div>
+        <div class="opinion-card">
+          <span class="opinion-name">Educatic Docente</span>
+          <p class="opinion-text">"Deberían tomar en cuenta el tiempo de espera para el transbordo. Si vas de sur a norte o viceversa, para el segundo alimentador ya no es válida la tarifa integrada. Podrían habilitar una línea directa de Matellini a Chimpu Ocllo."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEFIÉNDETE ============ -->
+  <section id="defiendete">
+    <div class="wrap">
+      <div class="defend-box">
+        <span class="eyebrow" style="color:var(--amber-ink);">Qué puedes hacer hoy</span>
+        <h2 style="margin-top:12px;">Defiéndete</h2>
+        <div class="defend-list">
+          <div>
+            <h3>Si usas tramos cortos</h3>
+            <p>Busca alternativas formales y seguras mientras dure la medida. Usar el alimentador
+            tal como está hoy demuestra que la medida "funciona" y que a los usuarios no les
+            importa — y eso es justo lo que no queremos transmitir.</p>
+          </div>
+          <div>
+            <h3>Si quieres sumarte</h3>
+            <p>Contáctanos para firmar la Adhesión Ciudadana que entregaremos a la Defensoría del
+            Pueblo. Nuestro único propósito es que el pasaje vuelva al precio anterior.</p>
+          </div>
+          <div>
+            <h3>Comparte esta página</h3>
+            <p>El sistema debe ser abierto y accesible. Tú debes decidir si tomar el servicio
+            completo o no — y esa decisión necesita información, no publicaciones que casi nadie
+            ve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIRMA FINAL ============ -->
+  <section id="firma" style="border-bottom:none;">
+    <div class="wrap">
+      <div class="cta-final">
+        <span class="eyebrow" style="color:#9AA0AC;">Adhesión Ciudadana · Defensoría del Pueblo</span>
+        <h2 style="margin-top:14px; color:var(--bg);">No lo dejes pasar.</h2>
+        <p class="lede">
+          Se deben tomar soluciones reales que generen un impacto positivo en la ciudadanía. De lo
+          contrario, la promesa de "un transporte moderno, seguro y eficiente" no tiene sentido.
+          Súmate y ayúdanos a frenar esta medida arbitraria.
+        </p>
+        <div class="btn-row">
+          <!-- Reemplaza este enlace por tu formulario o canal real de firma -->
+          <a href="https://m.me/tu_perfil_alternativo" class="btn btn-primary">Quiero firmar la Adhesión Ciudadana</a>
+        </div>
+        <div class="share-row">
+          <a id="share-whatsapp" href="#" target="_blank" rel="noopener">Compartir en WhatsApp</a>
+          <a id="share-twitter" href="#" target="_blank" rel="noopener">Compartir en X</a>
+          <a id="share-facebook" href="#" target="_blank" rel="noopener">Compartir en Facebook</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-note">
+      Iniciativa ciudadana independiente en defensa del derecho del pasajero. No tiene fines de
+      lucro ni afiliación política ni institucional. No busca perjudicar a los trabajadores del
+      sistema, sino que la tarifa responda a un estudio real.
+    </p>
+    <p class="foot-refs">
+      Exp. 4950-2026-02-0008281 · Carta N° D-010385-2026-ATU/GG-UACDG-AIP ·
+      Memorando N° D-001782-2026-ATU/DO-SSTR · Carta N° D-010995-2026-ATU/GG-UACGD-AIP
+    </p>
+    <div class="foot-links">
+      <a href="https://github.com/noalasubida/noalasubida.github.io">Ver código fuente y evidencias en GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Validador — reloj digital que simula la ventana de 122 minutos */
+  var clock = document.getElementById('validator-clock');
+  var state = document.getElementById('validator-state');
+  var label = document.getElementById('validator-label');
+  var widget = document.getElementById('validator-widget');
+  if(!clock) return;
+
+  var totalSeconds = 122 * 60;
+  var cycleMs = 26000;
+  var chargeMs = 3200;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function fmt(s){
+    s = Math.max(0, s);
+    var m = Math.floor(s / 60).toString().padStart(2, '0');
+    var ss = Math.floor(s % 60).toString().padStart(2, '0');
+    return m + ':' + ss;
+  }
+
+  if(reduced){
+    clock.textContent = fmt(totalSeconds);
+    state.textContent = 'Tienes 122:00 antes de que se aplique el recargo.';
+    return;
+  }
+
+  var start = null;
+  function frame(ts){
+    if(start === null) start = ts;
+    var elapsed = (ts - start) % (cycleMs + chargeMs);
+    if(elapsed < cycleMs){
+      var remaining = totalSeconds * (1 - elapsed / cycleMs);
+      clock.textContent = fmt(remaining);
+      label.textContent = 'Tiempo restante sin costo';
+      widget.classList.remove('is-charging');
+      state.textContent = 'Conexión activa — sin costo adicional';
+    } else {
+      clock.textContent = '+S/ 3.50';
+      label.textContent = 'Tiempo agotado';
+      widget.classList.add('is-charging');
+      state.textContent = 'Se cobra de nuevo, sin importar la demora del sistema';
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+(function(){
+  /* Enlaces para compartir */
+  var url = encodeURIComponent(window.location.href);
+  var text = encodeURIComponent('La ATU cobra S/ 3.50 en los alimentadores sin ningún estudio que lo sustente. Súmate para exigir que baje el pasaje.');
+  var wa = document.getElementById('share-whatsapp');
+  var tw = document.getElementById('share-twitter');
+  var fb = document.getElementById('share-facebook');
+  if(wa) wa.href = 'https://api.whatsapp.com/send?text=' + text + '%20' + url;
+  if(tw) tw.href = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+  if(fb) fb.href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+})();
+</script>
 
 </body>
 </html>
