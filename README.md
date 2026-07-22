@@ -28,5 +28,5 @@ Todos los documentos originales en formato PDF se encuentran respaldados públic
 
 ## 🤝 Cómo Apoyar
 Si eres un usuario afectado por los cobros dobles o las deficiencias del servicio, contacta con los administradores de esta página para adherir tu firma al planillón oficial que será entregado a la Defensoría del Pueblo.
+* WhatsApp: [https://wa.me/...](https://wa.me/message/CAFDSKESO7GNA1)
 * Email: [noalasubida@protonmail.com](mailto:noalasubida@protonmail.com)
-* Messenger: [https://www.messenger.com/t/...](https://www.messenger.com/t/61580752985072)
