@@ -240,6 +240,7 @@ p{ margin:0; }
   letter-spacing:.2px;
   white-space:nowrap;
 }
+.wordmark-logo{ height:36px; width:auto; flex-shrink:0; }
 .wordmark .tag{
   background:var(--red-solid); color:#fff;
   font-family:var(--font-mono); font-weight:600; font-size:11px;
@@ -517,6 +518,26 @@ section{ padding:76px 0; border-bottom:1px solid var(--rule); }
 .opinion-name{ font-weight:700; font-size:16px; }
 .opinion-text{ font-size:15.5px; color:var(--ink-soft); line-height:1.55; }
 
+/* ---- estado vacío + invitación a contribuir ---- */
+.opinions-empty{
+  border:1.5px dashed var(--rule); border-radius:14px;
+  padding:36px 24px; text-align:center; margin-bottom:24px;
+}
+.opinions-empty p{
+  font-size:15.5px; color:var(--ink-soft); max-width:52ch; margin-inline:auto;
+}
+.contribute-card{
+  display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+  justify-content:space-between;
+  background:var(--green-soft); border-radius:14px; padding:26px 28px;
+  border-top:4px solid var(--green);
+}
+.contribute-copy{ max-width:56ch; }
+.contribute-copy h3{ color:var(--green-ink); margin-bottom:6px; }
+.contribute-copy p{ font-size:15.5px; color:var(--ink-soft); }
+.contribute-card .btn{ flex-shrink:0; background:var(--green); color:#fff; border-color:transparent; }
+@media (max-width:640px){ .contribute-card{ flex-direction:column; align-items:flex-start; } }
+
 /* ---- defiéndete ---- */
 .defend-box{
   background:var(--amber-soft); border-radius:14px; padding:32px;
@@ -536,6 +557,39 @@ section{ padding:76px 0; border-bottom:1px solid var(--rule); }
 .cta-final h2{ margin-bottom:14px; color:var(--panel-ink); }
 .cta-final .eyebrow{ color:var(--panel-ink-soft) !important; }
 .cta-final .lede{ color:var(--panel-ink-soft); margin:0 auto 30px; }
+
+/* ---- tarjetas de acción — cada botón por separado, con ícono y texto ---- */
+.action-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  text-align:left; margin-bottom:6px;
+}
+@media (max-width:760px){ .action-grid{ grid-template-columns:1fr; } }
+.action-card{
+  display:flex; flex-direction:column; gap:10px;
+  background:var(--panel-surface); border:1px solid var(--panel-rule);
+  border-radius:14px; padding:20px; text-decoration:none;
+  transition:transform .12s ease, border-color .12s ease;
+}
+.action-card:hover{ transform:translateY(-2px); border-color:var(--panel-ink-soft); }
+.action-icon{
+  width:40px; height:40px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; flex-shrink:0;
+}
+.action-icon svg{ width:20px; height:20px; }
+.action-card.acc-red .action-icon{ background:var(--red-solid); }
+.action-card.acc-navy .action-icon{ background:var(--navy-solid); }
+.action-card.acc-amber .action-icon{ background:var(--amber); }
+.action-title{
+  font-weight:700; font-size:16.5px; color:var(--panel-ink);
+}
+.action-desc{
+  font-size:14.5px; color:var(--panel-ink-soft); line-height:1.5;
+}
+.action-card-arrow{
+  font-family:var(--font-mono); font-size:13px; color:var(--panel-ink-soft);
+  margin-top:2px;
+}
 .cta-final .btn-row{ justify-content:center; }
 .cta-final .btn-primary{ background:var(--red-solid); }
 .share-row{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
@@ -562,7 +616,10 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
 
 <header class="site-header">
   <div class="wrap">
-    <a href="#top" class="wordmark">NO A LA SUBIDA <span class="tag">ATU</span></a>
+    <a href="#top" class="wordmark">
+      <img src="https://raw.githubusercontent.com/noalasubida/noalasubida.github.io/refs/heads/main/assets/icon.png" alt="Logo de No a la Subida" class="wordmark-logo">
+      NO A LA SUBIDA <span class="tag">ATU</span>
+    </a>
     <nav class="site-nav" aria-label="Navegación principal">
       <a href="#el-engano">El engaño</a>
       <a href="#pruebas">Las pruebas</a>
@@ -907,51 +964,36 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
       <div class="section-head">
         <span class="eyebrow">No somos los únicos</span>
         <h2>Todos los que están en contra</h2>
-        <p class="lede">Comentarios reales de usuarios afectados por la medida.</p>
+        <p class="lede">Esta sección se irá llenando con testimonios reales de usuarios
+        afectados por la medida.</p>
       </div>
 
       <!--
-        Para agregar un nuevo comentario, copia el bloque completo de un
-        .opinion-card (desde <div class="opinion-card"> hasta </div>)
-        y pégalo dentro de .opinions-grid con el nombre y el texto nuevos.
+        Cuando tengas comentarios reales, reemplaza el bloque .opinions-empty
+        de abajo por un .opinions-grid con tarjetas .opinion-card, así:
+
+        <div class="opinions-grid">
+          <div class="opinion-card">
+            <span class="opinion-name">Nombre Apellido</span>
+            <p class="opinion-text">"Cita del comentario."</p>
+          </div>
+          ... (copia este bloque por cada comentario nuevo)
+        </div>
       -->
-      <div class="opinions-grid">
-        <div class="opinion-card">
-          <span class="opinion-name">Rocío Mendoza</span>
-          <p class="opinion-text">"Porque va a estar 3.50 los alimentadores, si no hacen rutas largas."</p>
+      <div class="opinions-empty">
+        <p>Todavía no hay comentarios publicados aquí. En cuanto lleguen testimonios reales de
+        usuarios, esta sección se llenará con ellos.</p>
+      </div>
+
+      <div class="contribute-card">
+        <div class="contribute-copy">
+          <h3>Contribuye al proyecto</h3>
+          <p>Envía una foto para la galería, un comentario sobre cómo te afecta la medida, o un
+          mensaje para que aparezca en el sitio. Todo pasa por una revisión antes de publicarse.</p>
         </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Erick Estrada Palma</span>
-          <p class="opinion-text">"Pensar que antes estaba 1 sol..."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Lucero Cóndor Gómez</span>
-          <p class="opinion-text">"Entonces si tomo dos alimentadores, ¿me sale 3.5? Porque la guía me dijo que me saldría 7 soles."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Chanan Curi Coca</span>
-          <p class="opinion-text">"Yo lo tomaba para tramo corto dentro de mi distrito. Con la nueva tarifa me sale más barato viajar en taxi con mi hermana."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Lenz Barrentos</span>
-          <p class="opinion-text">"Hay muchos que suben al alimentador para unas cuantas cuadras y no necesariamente van hasta las estaciones centrales."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Inti Pizarro</span>
-          <p class="opinion-text">"Que los informales se vuelvan formales, dice."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Javier Sanches</span>
-          <p class="opinion-text">"Ahora las combis se van a ir otra vez, más llenas que nunca."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Marimar Ojeda</span>
-          <p class="opinion-text">"Un día me cobraron doble."</p>
-        </div>
-        <div class="opinion-card">
-          <span class="opinion-name">Educatic Docente</span>
-          <p class="opinion-text">"Deberían tomar en cuenta el tiempo de espera para el transbordo. Si vas de sur a norte o viceversa, para el segundo alimentador ya no es válida la tarifa integrada. Podrían habilitar una línea directa de Matellini a Chimpu Ocllo."</p>
-        </div>
+        <a href="https://forms.gle/wVS35yCKJa6rhwuv7" target="_blank" rel="noopener" class="btn">
+          Contribuir al proyecto
+        </a>
       </div>
     </div>
   </section>
@@ -996,10 +1038,31 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
           contrario, la promesa de "un transporte moderno, seguro y eficiente" no tiene sentido.
           Súmate y ayúdanos a frenar esta medida arbitraria.
         </p>
-        <div class="btn-row">
-          <!-- Reemplaza este enlace por tu formulario o canal real de firma -->
-          <a href="https://wa.me/message/CAFDSKESO7GNA1" class="btn btn-primary">Quiero firmar la Adhesión Ciudadana</a>
-          <a href="mailto:noalasubida@protonmail.com" class="btn btn-primary">Contactar por correo</a>
+        <div class="action-grid">
+          <a href="https://wa.me/message/CAFDSKESO7GNA1" target="_blank" rel="noopener" class="action-card acc-red">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l3.6-1 11-11a2 2 0 0 0-3-3l-11 11-1 3.6z"/><path d="M14 6l4 4"/></svg>
+            </span>
+            <span class="action-title">Firmar la Adhesión Ciudadana</span>
+            <span class="action-desc">Súmate a la lista que entregaremos a la Defensoría del Pueblo.</span>
+            <span class="action-card-arrow">Abre WhatsApp →</span>
+          </a>
+          <a href="mailto:noalasubida@protonmail.com" class="action-card acc-navy">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="action-title">Contactar por correo</span>
+            <span class="action-desc">Escríbenos si tienes dudas o quieres coordinar con nosotros.</span>
+            <span class="action-card-arrow">noalasubida@protonmail.com</span>
+          </a>
+          <a href="https://docs.google.com/document/d/1Sdr5R5d8Dsc-KJMYJ1djafO2JGPX2eYqlPqWfDw3pGA/edit?usp=sharing" target="_blank" rel="noopener" class="action-card acc-amber">
+            <span class="action-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </span>
+            <span class="action-title">Ver el estado de las firmas</span>
+            <span class="action-desc">Consulta cuántas personas han firmado hasta ahora — sin datos personales.</span>
+            <span class="action-card-arrow">Abre el documento →</span>
+          </a>
         </div>
         <div class="share-row">
   <a class="share-link share-wa" data-network="whatsapp" href="#" target="_blank" rel="noopener">
