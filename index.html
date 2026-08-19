@@ -230,7 +230,7 @@ p{ margin:0; }
 }
 .site-header .wrap{
   display:flex; align-items:center; justify-content:space-between;
-  min-height:64px; gap:16px;
+  min-height:64px; gap:12px;
 }
 .wordmark{
   font-family:var(--font-display);
@@ -239,6 +239,7 @@ p{ margin:0; }
   display:flex; align-items:center; gap:9px;
   letter-spacing:.2px;
   white-space:nowrap;
+  flex-shrink:0;
 }
 .wordmark-logo{ height:36px; width:auto; flex-shrink:0; }
 .wordmark .tag{
@@ -246,17 +247,9 @@ p{ margin:0; }
   font-family:var(--font-mono); font-weight:600; font-size:11px;
   padding:3px 7px; border-radius:5px; letter-spacing:.03em;
 }
-.site-nav{
-  display:flex; gap:22px; overflow-x:auto;
-  scrollbar-width:none;
+.header-actions{
+  display:flex; align-items:center; gap:10px; flex-shrink:0;
 }
-.site-nav::-webkit-scrollbar{ display:none; }
-.site-nav a{
-  text-decoration:none; font-size:15.5px; font-weight:600;
-  color:var(--ink-soft); white-space:nowrap; padding:6px 2px;
-  border-bottom:2px solid transparent;
-}
-.site-nav a:hover{ color:var(--ink); border-color:var(--rule); }
 .nav-cta{
   flex-shrink:0;
   background:var(--red-solid); color:#fff !important;
@@ -271,6 +264,14 @@ p{ margin:0; }
   padding:8px 13px; border-radius:99px; cursor:pointer;
 }
 .theme-toggle:hover{ border-color:var(--ink-soft); }
+
+@media (max-width:420px){
+  .wordmark{ font-size:16px; gap:7px; }
+  .wordmark-logo{ height:28px; }
+  .theme-toggle{ padding:8px 10px; }
+  #theme-toggle-label{ display:none; }
+  .nav-cta{ padding:9px 12px; font-size:14.5px; }
+}
 
 .share-row-top{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -547,16 +548,19 @@ section{ padding:76px 0; border-bottom:1px solid var(--rule); }
 .defend-list h3{ font-size:18.5px; margin-bottom:6px; color:var(--amber-ink); }
 .defend-list p{ font-size:16.5px; color:var(--ink-soft); max-width:70ch; }
 
-/* ---- firma final ---- */
+/* ---- firma final ----
+   Banner rojo sólido a propósito — igual en modo claro y oscuro, para que
+   se lea como una decisión de diseño (la señal de alarma del sitio) y no
+   como un bloque que "quedó oscuro por error". */
 .cta-final{
-  background:var(--panel-bg); color:var(--panel-ink); border-radius:20px;
+  background:var(--red-solid); color:#fff; border-radius:20px;
   padding:56px 40px; text-align:center;
-  border:1px solid var(--panel-rule);
+  border:1px solid rgba(0,0,0,.12);
 }
 @media (max-width:560px){ .cta-final{ padding:40px 22px; } }
-.cta-final h2{ margin-bottom:14px; color:var(--panel-ink); }
-.cta-final .eyebrow{ color:var(--panel-ink-soft) !important; }
-.cta-final .lede{ color:var(--panel-ink-soft); margin:0 auto 30px; }
+.cta-final h2{ margin-bottom:14px; color:#fff; }
+.cta-final .eyebrow{ color:rgba(255,255,255,.85) !important; }
+.cta-final .lede{ color:rgba(255,255,255,.88); margin:0 auto 30px; }
 
 /* ---- tarjetas de acción — cada botón por separado, con ícono y texto ---- */
 .action-grid{
@@ -566,39 +570,37 @@ section{ padding:76px 0; border-bottom:1px solid var(--rule); }
 @media (max-width:760px){ .action-grid{ grid-template-columns:1fr; } }
 .action-card{
   display:flex; flex-direction:column; gap:10px;
-  background:var(--panel-surface); border:1px solid var(--panel-rule);
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.28);
   border-radius:14px; padding:20px; text-decoration:none;
-  transition:transform .12s ease, border-color .12s ease;
+  transition:transform .12s ease, background-color .12s ease;
 }
-.action-card:hover{ transform:translateY(-2px); border-color:var(--panel-ink-soft); }
+.action-card:hover{ transform:translateY(-2px); background:rgba(255,255,255,.19); }
 .action-icon{
   width:40px; height:40px; border-radius:10px;
   display:flex; align-items:center; justify-content:center;
-  color:#fff; flex-shrink:0;
+  color:var(--red-solid); background:#fff; flex-shrink:0;
 }
 .action-icon svg{ width:20px; height:20px; }
-.action-card.acc-red .action-icon{ background:var(--red-solid); }
-.action-card.acc-navy .action-icon{ background:var(--navy-solid); }
-.action-card.acc-amber .action-icon{ background:var(--amber); }
 .action-title{
-  font-weight:700; font-size:16.5px; color:var(--panel-ink);
+  font-weight:700; font-size:16.5px; color:#fff;
 }
 .action-desc{
-  font-size:14.5px; color:var(--panel-ink-soft); line-height:1.5;
+  font-size:14.5px; color:rgba(255,255,255,.82); line-height:1.5;
 }
 .action-card-arrow{
-  font-family:var(--font-mono); font-size:13px; color:var(--panel-ink-soft);
+  font-family:var(--font-mono); font-size:13px; color:rgba(255,255,255,.72);
   margin-top:2px;
 }
 .cta-final .btn-row{ justify-content:center; }
-.cta-final .btn-primary{ background:var(--red-solid); }
+.cta-final .btn-primary{ background:#fff; color:var(--red-solid); }
 .share-row{ margin-top:30px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
 .share-row a{
   font-family:var(--font-mono); font-size:14px; text-decoration:none;
-  border:1px solid var(--panel-rule); border-radius:99px; padding:9px 17px;
-  color:var(--panel-ink-soft); background:var(--panel-surface);
+  border:1px solid rgba(255,255,255,.3); border-radius:99px; padding:9px 17px;
+  color:rgba(255,255,255,.85); background:rgba(255,255,255,.1);
 }
-.share-row a:hover{ border-color:var(--panel-ink-soft); color:var(--panel-ink); }
+.share-row a:hover{ border-color:rgba(255,255,255,.55); color:#fff; }
+
 
 /* ---- footer ---- */
 footer{ padding:44px 0 60px; }
@@ -620,19 +622,12 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
       <img src="https://raw.githubusercontent.com/noalasubida/noalasubida.github.io/refs/heads/main/assets/icon.png" alt="Logo de No a la Subida" class="wordmark-logo">
       NO A LA SUBIDA
     </a>
-    <nav class="site-nav" aria-label="Navegación principal">
-      <a href="#el-engano">El engaño</a>
-      <a href="#pruebas">Las pruebas</a>
-      <a href="#perjudica">Quién pierde</a>
-      <a href="#cronologia">Cronología</a>
-      <a href="#propuesta">Nuestro pedido</a>
-      <a href="#preguntas">Preguntas</a>
-      <a href="#defiendete">Defiéndete</a>
-    </nav>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
-      <span aria-hidden="true">🌙</span><span id="theme-toggle-label">Oscuro</span>
-    </button>
-    <a href="#firma" class="nav-cta">Firmar</a>
+    <div class="header-actions">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span aria-hidden="true">🌙</span><span id="theme-toggle-label">Oscuro</span>
+      </button>
+      <a href="#firma" class="nav-cta">Firmar</a>
+    </div>
   </div>
 </header>
 
@@ -1039,7 +1034,7 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
           Súmate y ayúdanos a frenar esta medida arbitraria.
         </p>
         <div class="action-grid">
-          <a href="https://wa.me/message/CAFDSKESO7GNA1" target="_blank" rel="noopener" class="action-card acc-red">
+          <a href="https://wa.me/message/CAFDSKESO7GNA1" target="_blank" rel="noopener" class="action-card">
             <span class="action-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l3.6-1 11-11a2 2 0 0 0-3-3l-11 11-1 3.6z"/><path d="M14 6l4 4"/></svg>
             </span>
@@ -1047,7 +1042,7 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
             <span class="action-desc">Súmate a la lista que entregaremos a la Defensoría del Pueblo.</span>
             <span class="action-card-arrow">Abre WhatsApp →</span>
           </a>
-          <a href="mailto:noalasubida@protonmail.com" class="action-card acc-navy">
+          <a href="mailto:noalasubida@protonmail.com" class="action-card">
             <span class="action-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
             </span>
@@ -1055,7 +1050,7 @@ footer .wrap{ display:flex; flex-direction:column; gap:14px; }
             <span class="action-desc">Escríbenos si tienes dudas o quieres coordinar con nosotros.</span>
             <span class="action-card-arrow">noalasubida@protonmail.com</span>
           </a>
-          <a href="https://docs.google.com/document/d/1Sdr5R5d8Dsc-KJMYJ1djafO2JGPX2eYqlPqWfDw3pGA/edit?usp=sharing" target="_blank" rel="noopener" class="action-card acc-amber">
+          <a href="https://docs.google.com/document/d/1Sdr5R5d8Dsc-KJMYJ1djafO2JGPX2eYqlPqWfDw3pGA/edit?usp=sharing" target="_blank" rel="noopener" class="action-card">
             <span class="action-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </span>
